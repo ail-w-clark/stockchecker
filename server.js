@@ -12,12 +12,7 @@ const runner            = require('./test-runner');
 const app = express();
 
 app.use(helmet());
-app.use(helmet.noCache());
-const directives = {
-  defaultSrc: ["'self'"],
-  scriptSrc: ["'self'", 'trusted-cdn.com']
-}
-app.use(helmet.contentSecurityPolicy({directives: {defaultSrc: ["'self'"], scriptSrc: ["'self'", 'trusted-cdn.com']}}));
+app.use(helmet.contentSecurityPolicy({ directives: { defaultSrc: ["'self'"], scriptSrc: ["'self'"], styleSrc: ["'self'"] }} ))
 
 app.use('/public', express.static(process.cwd() + '/public'));
 
